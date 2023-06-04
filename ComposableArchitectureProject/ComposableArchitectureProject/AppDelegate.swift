@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  ComposableArchitecture
+//  ComposableArchitectureProject
 //
 //  Created by Mark Jones on 04/06/2023.
 //
