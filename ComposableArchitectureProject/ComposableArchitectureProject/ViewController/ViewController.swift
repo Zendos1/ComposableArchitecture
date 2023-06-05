@@ -11,8 +11,10 @@ import ComposableArchitecture
 // MARK: ViewController
 
 class ViewController: UIViewController {
+    
     // Store is generic over AppState & AppAction
-    var store: Store<AppState, AppAction>
+    private var store: Store<AppState, AppAction>
+    private let viewControllerView = ViewControllerView()
    
     init(store: Store<AppState, AppAction>) {
         self.store = store
@@ -25,11 +27,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .cyan
+        view.addSubview(viewControllerView)
+        title = "ComposableArcitecture"
+        setupConstraints()
     }
-}
-
-extension ViewController {
+    
+    private func setupConstraints() {
+        viewControllerView.edgesToSuperview()
+    }
     
 }
+
 
