@@ -13,13 +13,15 @@ import ComposableArchitecture
 class ViewController: UIViewController {
     
     // The ViewStoreOf is Generic over a Feature => ViewStoreOf<R: Reducer> = ViewStore<R.State, R.Action>
-    private let store: ViewStoreOf<ThingsToBuyListFeature>
+    private var store: ViewStoreOf<ThingsToBuyListFeature>
     private let viewControllerView = ViewControllerView()
+    private var cancellables = Set<AnyCancellable>()
     
     init(store: StoreOf<ThingsToBuyListFeature>) {
         self.store = ViewStore(store, observe: { $0 })
         viewControllerView.viewStore = self.store
         super.init(nibName: nil, bundle: nil)
+        viewControllerView.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -36,7 +38,15 @@ class ViewController: UIViewController {
     private func setupConstraints() {
         viewControllerView.edgesToSuperview()
     }
+
+}
+
+extension ViewController: TableViewCellDelegate {
     
+    func thingsToBuyPurchaseStatusToggled(at index: Int) {
+        store.send(.thingsToBuyCheckBoxTapped(index: index))
+        print("VC is Toggling isPurchased at index \(index)")
+    }
 }
 
 

@@ -12,6 +12,7 @@ import ComposableArchitecture
 class ViewControllerView :UIView {
     
     private let tableView = UITableView(frame: CGRect.zero, style: .grouped)
+    var delegate: TableViewCellDelegate?
     var viewStore: ViewStoreOf<ThingsToBuyListFeature>?
     
     override init(frame: CGRect) {
@@ -60,8 +61,9 @@ extension ViewControllerView: UITableViewDataSource {
                                                     for: indexPath) as? TableViewCell,
            let thingsToBuyViewModel = viewStore?.thingsToBuy[safe: indexPath.item] {
             cell.configure(title: thingsToBuyViewModel.description,
-                           isPurchased: false)
-//            cell.delegate = self
+                           isPurchased: false,
+                           index: indexPath.item)
+            cell.delegate = delegate
             return cell
         }
         return UITableViewCell()

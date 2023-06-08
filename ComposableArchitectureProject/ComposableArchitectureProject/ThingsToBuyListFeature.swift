@@ -18,7 +18,8 @@ struct ThingsToBuyListFeature: Reducer {
     }
     
     enum Action {
-        
+        case thingsToBuyCheckBoxTapped(index: Int)
+        case thingsToBuyDescriptionChanged(index: Int, text: String)
     }
     
     struct AppEnvironment {  // dependencies
@@ -30,8 +31,16 @@ struct ThingsToBuyListFeature: Reducer {
     
     func reduce(into state: inout State, action: Action) -> Effect<Action> {
         switch action {
-        default:
-            print("MJ Here")
+        
+        case .thingsToBuyCheckBoxTapped(index: let index):
+            print("checkBoxTapped in REDUCER - \(index)")
+            state.thingsToBuy[index].isPurchased.toggle()
+            return .none
+        
+        case .thingsToBuyDescriptionChanged(index: let index, text: let text):
+            print("descriptionTapped in REDUCER - \(index) - \(text)")
+            state.thingsToBuy[index].description = text
+            return .none
         }
     }
 }

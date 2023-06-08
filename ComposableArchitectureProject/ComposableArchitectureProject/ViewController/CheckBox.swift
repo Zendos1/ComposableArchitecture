@@ -9,9 +9,14 @@ import UIKit
 
 typealias BoolActionBlock = (Bool) -> Void
 
+protocol CheckBoxDelegate {
+    func checkboxTapped()
+}
+
 class CheckBox :UIButton {
 
     var selectAction: BoolActionBlock?
+    var delegate: CheckBoxDelegate?
     
     init(isSelected :Bool = true) {
         super.init(frame: .zero)
@@ -36,7 +41,8 @@ class CheckBox :UIButton {
     }
     
     @objc func tapped() {
-        isSelected.toggle()
-        selectAction?(isSelected)
+//        isSelected.toggle()
+//        selectAction?(isSelected)
+        delegate?.checkboxTapped()
     }
 }

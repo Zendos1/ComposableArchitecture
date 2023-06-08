@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol TableViewCellDelegate {
+    func thingsToBuyPurchaseStatusToggled(at index: Int)
+}
+
 class TableViewCell: UITableViewCell {
     
     let cellItemView = TableViewCellView()
+    var index: Int?
+    var delegate: TableViewCellDelegate?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -37,9 +43,23 @@ class TableViewCell: UITableViewCell {
         cellItemView.bottomToSuperview(offset: -5)
     }
     
-    func configure(title: String? = "n/a", isPurchased: Bool) {
+    func configure(title: String? = "n/a", isPurchased: Bool, index: Int) {
         cellItemView.configure(title: title)
+        cellItemView.checkBox.delegate = self
+        self.index = index
     }
+}
+
+extension TableViewCell: CheckBoxDelegate {
+    func checkboxTapped() {
+        guard let index else { return }
+        print("CHECKBOX TAPPED relayed to TABLEViewCell")
+        delegate?.thingsToBuyPurchaseStatusToggled(at: index)
+    }
+}
+
+protocol CheckBoxDelegateProtocol {
+    func checkboxTapped()
 }
 
 class TableViewCellView :UIView {
@@ -79,6 +99,7 @@ class TableViewCellView :UIView {
         checkBox.isSelected = false
     }
 }
+
 
 
 
