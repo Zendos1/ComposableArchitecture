@@ -14,12 +14,7 @@ struct ThingsToBuyListFeature: Reducer {
     // the domain and the reducer model our business logic for the App OR Feature
     
     struct State: Equatable {
-        var thingsToBuy: [ThingsToBuyViewModel] = [ThingsToBuyViewModel(description: "Audi TT 2.0 TDI", isPurchased: false),
-                                                   ThingsToBuyViewModel(description: "Apple Vision Pro", isPurchased: false),
-                                                   ThingsToBuyViewModel(description: "Warhammer 40k Elite Edition Starter Set", isPurchased: false),
-                                                   ThingsToBuyViewModel(description: "Specialized Roubaix", isPurchased: false),
-                                                   ThingsToBuyViewModel(description: "Coffee MAchine", isPurchased: false),
-                                                   ThingsToBuyViewModel(description: "M2 MacBook Pro", isPurchased: false)] 
+        var thingsToBuy: [ThingsToBuyViewModel] = []
     }
     
     enum Action {

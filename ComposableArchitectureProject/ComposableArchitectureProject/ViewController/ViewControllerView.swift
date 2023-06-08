@@ -59,7 +59,8 @@ extension ViewControllerView: UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TableViewCell.self),
                                                     for: indexPath) as? TableViewCell,
            let thingsToBuyViewModel = viewStore?.thingsToBuy[safe: indexPath.item] {
-            cell.configure(title: thingsToBuyViewModel.description)
+            cell.configure(title: thingsToBuyViewModel.description,
+                           isPurchased: false)
 //            cell.delegate = self
             return cell
         }

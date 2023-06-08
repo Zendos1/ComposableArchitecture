@@ -37,7 +37,7 @@ class TableViewCell: UITableViewCell {
         cellItemView.bottomToSuperview(offset: -5)
     }
     
-    func configure(title: String? = "n/a") {
+    func configure(title: String? = "n/a", isPurchased: Bool) {
         cellItemView.configure(title: title)
     }
 }
@@ -45,6 +45,7 @@ class TableViewCell: UITableViewCell {
 class TableViewCellView :UIView {
     
     let mainLabel = UILabel()
+    let checkBox = CheckBox()
     
     init() {
         super.init(frame: .zero)
@@ -60,14 +61,22 @@ class TableViewCellView :UIView {
 //        mainLabel.backgroundColor = .systemGray
         mainLabel.textColor = .blue
         addSubview(mainLabel)
+        addSubview(checkBox)
     }
     
     func setupConstraints() {
-        mainLabel.edgesToSuperview()
+        checkBox.topToSuperview()
+        checkBox.bottomToSuperview()
+        checkBox.rightToSuperview()
+        mainLabel.topToSuperview()
+        mainLabel.bottomToSuperview()
+        mainLabel.leftToSuperview()
+        mainLabel.rightToLeft(of: checkBox)
     }
     
     func configure(title :String?) {
         mainLabel.text = title
+        checkBox.isSelected = false
     }
 }
 
