@@ -20,6 +20,7 @@ LetsGetChecked/.scannerwork/report-task.txt
 !default.perspectivev3
 xcuserdata/
 TravelJunkie.xcodeproj/xcuserdata/
+*.xcuserstate
 
 ## Other
 *.moved-aside

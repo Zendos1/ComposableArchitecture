@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F7877A2C2A2E268E00A19507 /* ComposableFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7877A2B2A2E268E00A19507 /* ComposableFeature.swift */; };
+		F7877A2C2A2E268E00A19507 /* ThingsToBuyListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7877A2B2A2E268E00A19507 /* ThingsToBuyListFeature.swift */; };
 		F7877A2F2A2E283E00A19507 /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = F7877A2E2A2E283E00A19507 /* TinyConstraints */; };
 		F7877A322A2E2B4900A19507 /* ViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7877A312A2E2B4900A19507 /* ViewControllerView.swift */; };
 		F7877A352A2E2E4300A19507 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7877A342A2E2E4300A19507 /* TableViewCell.swift */; };
@@ -41,7 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F7877A2B2A2E268E00A19507 /* ComposableFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposableFeature.swift; sourceTree = "<group>"; };
+		F7877A2B2A2E268E00A19507 /* ThingsToBuyListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThingsToBuyListFeature.swift; sourceTree = "<group>"; };
 		F7877A312A2E2B4900A19507 /* ViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerView.swift; sourceTree = "<group>"; };
 		F7877A342A2E2E4300A19507 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		F7877A362A2E37DF00A19507 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 			children = (
 				F7877A332A2E2C0D00A19507 /* SupportingFiles */,
 				F7877A302A2E2B2C00A19507 /* ViewController */,
-				F7877A2B2A2E268E00A19507 /* ComposableFeature.swift */,
+				F7877A2B2A2E268E00A19507 /* ThingsToBuyListFeature.swift */,
 				F7877A362A2E37DF00A19507 /* Extensions.swift */,
 				F7C29F892A2E1056006116BA /* Assets.xcassets */,
 				F7C29F8B2A2E1056006116BA /* LaunchScreen.storyboard */,
@@ -299,7 +299,7 @@
 				F7877A322A2E2B4900A19507 /* ViewControllerView.swift in Sources */,
 				F7877A352A2E2E4300A19507 /* TableViewCell.swift in Sources */,
 				F7C29F832A2E1055006116BA /* SceneDelegate.swift in Sources */,
-				F7877A2C2A2E268E00A19507 /* ComposableFeature.swift in Sources */,
+				F7877A2C2A2E268E00A19507 /* ThingsToBuyListFeature.swift in Sources */,
 				F7877A372A2E37DF00A19507 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -648,8 +648,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.54.0;
+				kind = revision;
+				revision = 9c640d072e4aff1370d441f6a5847676886efa2c;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

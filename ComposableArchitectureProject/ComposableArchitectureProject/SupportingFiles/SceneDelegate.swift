@@ -11,9 +11,8 @@ import ComposableArchitecture
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    private let store = Store(initialState: AppState(),
-                              reducer: appReducer,
-                              environment: AppEnvironment())
+    private let store = StoreOf<ThingsToBuyListFeature>(initialState: .init(),
+                                                        reducer: ThingsToBuyListFeature.init)
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }

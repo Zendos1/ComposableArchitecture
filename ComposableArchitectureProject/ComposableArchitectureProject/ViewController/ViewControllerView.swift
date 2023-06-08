@@ -7,11 +7,12 @@
 
 import UIKit
 import TinyConstraints
+import ComposableArchitecture
 
 class ViewControllerView :UIView {
     
     private let tableView = UITableView(frame: CGRect.zero, style: .grouped)
-    let dataSource = ["Specialized Roubaix", "Coffee MAchine", "M2 MacBook Pro", "Audi TT"]
+    var viewStore: ViewStoreOf<ThingsToBuyListFeature>?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,7 +48,7 @@ class ViewControllerView :UIView {
 extension ViewControllerView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
+        return viewStore?.thingsToBuy.count ?? 0
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -57,8 +58,8 @@ extension ViewControllerView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TableViewCell.self),
                                                     for: indexPath) as? TableViewCell,
-           let title = dataSource[safe: indexPath.item] {
-            cell.configure(title: title)
+           let thingsToBuyViewModel = viewStore?.thingsToBuy[safe: indexPath.item] {
+            cell.configure(title: thingsToBuyViewModel.description)
 //            cell.delegate = self
             return cell
         }
@@ -68,7 +69,7 @@ extension ViewControllerView: UITableViewDataSource {
 
 extension ViewControllerView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let title = dataSource[safe: indexPath.item] else { return }
+        guard let title = viewStore?.thingsToBuy[safe: indexPath.item]?.description else { return }
         print(title)
     }
     

@@ -12,12 +12,13 @@ import ComposableArchitecture
 
 class ViewController: UIViewController {
     
-    // Store is generic over AppState & AppAction
-    private var store: Store<AppState, AppAction>
+    // The ViewStoreOf is Generic over a Feature => ViewStoreOf<R: Reducer> = ViewStore<R.State, R.Action>
+    private let store: ViewStoreOf<ThingsToBuyListFeature>
     private let viewControllerView = ViewControllerView()
-   
-    init(store: Store<AppState, AppAction>) {
-        self.store = store
+    
+    init(store: StoreOf<ThingsToBuyListFeature>) {
+        self.store = ViewStore(store, observe: { $0 })
+        viewControllerView.viewStore = self.store
         super.init(nibName: nil, bundle: nil)
     }
     
