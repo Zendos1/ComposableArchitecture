@@ -7,6 +7,7 @@
 
 import UIKit
 import ComposableArchitecture
+import Combine
 
 // MARK: ViewController
 
@@ -33,12 +34,22 @@ class ViewController: UIViewController {
         view.addSubview(viewControllerView)
         title = "ComposableArcitecture"
         setupConstraints()
+        setupSubscriptions()
     }
     
     private func setupConstraints() {
         viewControllerView.edgesToSuperview()
     }
-
+    
+    func setupSubscriptions() {
+        store.publisher.thingsToBuy
+            .dropFirst()
+            .removeDuplicates()
+            .sink(receiveValue: { ThingsToBuyViewModel in
+                print("MJ MJ MJ MJ - \(ThingsToBuyViewModel.description)")
+            }).store(in: &cancellables)
+    }
+    
 }
 
 extension ViewController: TableViewCellDelegate {
