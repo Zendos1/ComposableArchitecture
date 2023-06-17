@@ -9,6 +9,7 @@ import UIKit
 
 protocol TableViewCellDelegate {
     func thingsToBuyPurchaseStatusToggled(at index: Int)
+    func thingsToBuyTextChange(at index: Int, text: String)
 }
 
 class TableViewCell: UITableViewCell {
@@ -46,6 +47,7 @@ class TableViewCell: UITableViewCell {
     func configure(title: String? = "n/a", isPurchased: Bool, index: Int) {
         cellItemView.configure(title: title, isSelected: isPurchased)
         cellItemView.checkBox.delegate = self
+        cellItemView.textField.delegate = self
         self.index = index
     }
 }
@@ -62,9 +64,26 @@ protocol CheckBoxDelegateProtocol {
     func checkboxTapped()
 }
 
+extension TableViewCell: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) { }
+    func textFieldDidChangeSelection(_ textField: UITextField) { }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let text = textField.text, let index else { return }
+        print("TextField Finished Editing - relay text update to VCView (as TableViewCellDelegate)")
+        delegate?.thingsToBuyTextChange(at: index, text: text)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // TextField Should Return on return key
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
 class TableViewCellView :UIView {
     
-    let mainLabel = UILabel()
+    let textField = UITextField()
     let checkBox = CheckBox()
     
     init() {
@@ -78,9 +97,8 @@ class TableViewCellView :UIView {
     }
         
     func setup() {
-//        mainLabel.backgroundColor = .systemGray
-        mainLabel.textColor = .blue
-        addSubview(mainLabel)
+        textField.textColor = .blue
+        addSubview(textField)
         addSubview(checkBox)
     }
     
@@ -88,18 +106,15 @@ class TableViewCellView :UIView {
         checkBox.topToSuperview()
         checkBox.bottomToSuperview()
         checkBox.rightToSuperview()
-        mainLabel.topToSuperview()
-        mainLabel.bottomToSuperview()
-        mainLabel.leftToSuperview()
-        mainLabel.rightToLeft(of: checkBox)
+        textField.topToSuperview()
+        textField.bottomToSuperview()
+        textField.leftToSuperview()
+        textField.rightToLeft(of: checkBox)
     }
     
     func configure(title :String?, isSelected: Bool) {
-        mainLabel.text = title
+        textField.text = title
         checkBox.isSelected = isSelected
     }
 }
-
-
-
 

@@ -72,10 +72,10 @@ extension ViewControllerView: UITableViewDataSource {
 extension ViewControllerView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let title = viewStore?.thingsToBuy[safe: indexPath.item]?.description else { return }
-        viewStore?.send(.thingsToBuyDescriptionChanged(index: indexPath.item,
-                                                       text: "PLACEHOLDER FOR NOW"))
+//        viewStore?.send(.thingsToBuyDescriptionChanged(index: indexPath.item,
+//                                                       text: "PLACEHOLDER FOR NOW"))
         print(title)
-        tableView.reloadData()
+//        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -109,6 +109,11 @@ extension ViewControllerView: TableViewCellDelegate {
         print("VCView is sending a thingsToBuyCheckBoxTapped Action to the Store")
         viewStore?.send(.thingsToBuyCheckBoxTapped(index: index))
         tableView.reloadData()
+    }
+    
+    func thingsToBuyTextChange(at index: Int, text: String) {
+        print("VCView is sending a thingsToBuyDescriptionChanged Action to the Store")
+        viewStore?.send(.thingsToBuyDescriptionChanged(index: index, text: text))
     }
 }
 
