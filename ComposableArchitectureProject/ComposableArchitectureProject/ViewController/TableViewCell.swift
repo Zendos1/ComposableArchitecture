@@ -44,7 +44,7 @@ class TableViewCell: UITableViewCell {
     }
     
     func configure(title: String? = "n/a", isPurchased: Bool, index: Int) {
-        cellItemView.configure(title: title)
+        cellItemView.configure(title: title, isSelected: isPurchased)
         cellItemView.checkBox.delegate = self
         self.index = index
     }
@@ -94,9 +94,9 @@ class TableViewCellView :UIView {
         mainLabel.rightToLeft(of: checkBox)
     }
     
-    func configure(title :String?) {
+    func configure(title :String?, isSelected: Bool) {
         mainLabel.text = title
-        checkBox.isSelected = false
+        checkBox.isSelected = isSelected
     }
 }
 

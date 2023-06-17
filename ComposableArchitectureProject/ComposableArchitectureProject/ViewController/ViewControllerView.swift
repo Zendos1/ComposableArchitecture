@@ -9,14 +9,9 @@ import UIKit
 import TinyConstraints
 import ComposableArchitecture
 
-protocol ViewControllerViewDelegate {
-    func thingsToBuyPurchaseStatusToggled(at index: Int)
-}
-
 class ViewControllerView :UIView {
     
     private let tableView = UITableView(frame: CGRect.zero, style: .grouped)
-    var delegate: ViewControllerViewDelegate?
     var viewStore: ViewStoreOf<ThingsToBuyListFeature>?
     
     override init(frame: CGRect) {
@@ -65,7 +60,7 @@ extension ViewControllerView: UITableViewDataSource {
                                                     for: indexPath) as? TableViewCell,
            let thingsToBuyViewModel = viewStore?.thingsToBuy[safe: indexPath.item] {
             cell.configure(title: thingsToBuyViewModel.description,
-                           isPurchased: false,
+                           isPurchased: thingsToBuyViewModel.isPurchased,
                            index: indexPath.item)
             cell.delegate = self
             return cell
@@ -77,7 +72,10 @@ extension ViewControllerView: UITableViewDataSource {
 extension ViewControllerView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let title = viewStore?.thingsToBuy[safe: indexPath.item]?.description else { return }
+        viewStore?.send(.thingsToBuyDescriptionChanged(index: indexPath.item,
+                                                       text: "PLACEHOLDER FOR NOW"))
         print(title)
+        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -108,9 +106,9 @@ extension ViewControllerView: UITableViewDelegate {
 extension ViewControllerView: TableViewCellDelegate {
     
     func thingsToBuyPurchaseStatusToggled(at index: Int) {
-//        store.send(.thingsToBuyCheckBoxTapped(index: index))
-        print("VCView (as TableViewCellDelegate) is relaying isPurchased to VC (as ViewControllerViewDelegate)")
-        delegate?.thingsToBuyPurchaseStatusToggled(at: index)
+        print("VCView is sending a thingsToBuyCheckBoxTapped Action to the Store")
+        viewStore?.send(.thingsToBuyCheckBoxTapped(index: index))
+        tableView.reloadData()
     }
 }
 

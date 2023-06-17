@@ -22,7 +22,6 @@ class ViewController: UIViewController {
         self.store = ViewStore(store, observe: { $0 })
         viewControllerView.viewStore = self.store
         super.init(nibName: nil, bundle: nil)
-        viewControllerView.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -51,13 +50,3 @@ class ViewController: UIViewController {
     }
     
 }
-
-extension ViewController: ViewControllerViewDelegate {
-    
-    func thingsToBuyPurchaseStatusToggled(at index: Int) {
-        print("VC (as ViewControllerViewDelegate) is sending a thingsToBuyCheckBoxTapped Action to the Store")
-        store.send(.thingsToBuyCheckBoxTapped(index: index))
-    }
-}
-
-
