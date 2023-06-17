@@ -22,7 +22,6 @@ class CheckBox :UIButton {
         super.init(frame: .zero)
         self.isSelected = isSelected
         setup()
-        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -33,11 +32,6 @@ class CheckBox :UIButton {
         setImage(UIImage(named: "checkUnchecked"), for: .normal)
         setImage(UIImage(named: "checkChecked"), for: .selected)
         addTarget(self, action: #selector(tapped), for: .touchUpInside)
-    }
-    
-    func setupConstraints() {
-        width(25.0)
-        height(25.0)
     }
     
     @objc func tapped() {
