@@ -53,7 +53,7 @@ class TableViewCell: UITableViewCell {
 extension TableViewCell: CheckBoxDelegate {
     func checkboxTapped() {
         guard let index else { return }
-        print("CHECKBOX TAPPED relayed to TABLEViewCell")
+        print("TVCell (as CheckBoxDelegate) relaying tap to VCView (as TableViewCellDelegate)")
         delegate?.thingsToBuyPurchaseStatusToggled(at: index)
     }
 }

@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                  ThingsToBuyViewModel(description: "Apple Vision Pro", isPurchased: false),
                                  ThingsToBuyViewModel(description: "Warhammer 40k Elite Edition Starter Set", isPurchased: false),
                                  ThingsToBuyViewModel(description: "Specialized Roubaix", isPurchased: false),
-                                 ThingsToBuyViewModel(description: "Coffee MAchine", isPurchased: false),
+                                 ThingsToBuyViewModel(description: "Coffee Machine", isPurchased: false),
                                  ThingsToBuyViewModel(description: "M2 MacBook Pro", isPurchased: false)]),
         reducer: ThingsToBuyListFeature.init)
     

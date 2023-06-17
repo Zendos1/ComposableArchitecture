@@ -9,10 +9,14 @@ import UIKit
 import TinyConstraints
 import ComposableArchitecture
 
+protocol ViewControllerViewDelegate {
+    func thingsToBuyPurchaseStatusToggled(at index: Int)
+}
+
 class ViewControllerView :UIView {
     
     private let tableView = UITableView(frame: CGRect.zero, style: .grouped)
-    var delegate: TableViewCellDelegate?
+    var delegate: ViewControllerViewDelegate?
     var viewStore: ViewStoreOf<ThingsToBuyListFeature>?
     
     override init(frame: CGRect) {
@@ -63,7 +67,7 @@ extension ViewControllerView: UITableViewDataSource {
             cell.configure(title: thingsToBuyViewModel.description,
                            isPurchased: false,
                            index: indexPath.item)
-            cell.delegate = delegate
+            cell.delegate = self
             return cell
         }
         return UITableViewCell()
@@ -100,3 +104,13 @@ extension ViewControllerView: UITableViewDelegate {
         return nil
     }
 }
+
+extension ViewControllerView: TableViewCellDelegate {
+    
+    func thingsToBuyPurchaseStatusToggled(at index: Int) {
+//        store.send(.thingsToBuyCheckBoxTapped(index: index))
+        print("VCView (as TableViewCellDelegate) is relaying isPurchased to VC (as ViewControllerViewDelegate)")
+        delegate?.thingsToBuyPurchaseStatusToggled(at: index)
+    }
+}
+

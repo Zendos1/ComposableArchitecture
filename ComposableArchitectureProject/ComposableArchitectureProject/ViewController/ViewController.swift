@@ -52,11 +52,11 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController: TableViewCellDelegate {
+extension ViewController: ViewControllerViewDelegate {
     
     func thingsToBuyPurchaseStatusToggled(at index: Int) {
+        print("VC (as ViewControllerViewDelegate) is sending a thingsToBuyCheckBoxTapped Action to the Store")
         store.send(.thingsToBuyCheckBoxTapped(index: index))
-        print("VC is Toggling isPurchased at index \(index)")
     }
 }
 

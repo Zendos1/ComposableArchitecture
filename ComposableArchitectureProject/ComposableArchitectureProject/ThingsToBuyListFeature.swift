@@ -33,7 +33,7 @@ struct ThingsToBuyListFeature: Reducer {
         switch action {
         
         case .thingsToBuyCheckBoxTapped(index: let index):
-            print("checkBoxTapped in REDUCER - \(index)")
+            print("REDUCER: receives action - checkBoxTapped - for index: \(index)")
             state.thingsToBuy[index].isPurchased.toggle()
             return .none
         
