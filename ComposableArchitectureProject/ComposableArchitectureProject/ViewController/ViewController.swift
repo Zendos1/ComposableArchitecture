@@ -32,7 +32,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(viewControllerView)
-        title = "ComposableArcitecture"
+        title = "ComposableArchitecture"
         setupConstraints()
         setupSubscriptions()
     }
